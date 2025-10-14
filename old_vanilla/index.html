@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Above Me</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>✈️ Plane Above Me</h1>
+            <p class="subtitle">Real-time aircraft tracking overhead</p>
+        </header>
+
+        <div id="status" class="status">
+            <div class="spinner"></div>
+            <p>Getting your location...</p>
+        </div>
+
+        <div id="location-info" class="location-info hidden">
+            <p>📍 Your location: <span id="user-coords"></span></p>
+            <p>🔄 Last updated: <span id="last-update"></span></p>
+        </div>
+
+        <div id="map" class="map hidden"></div>
+
+        <div id="planes-container" class="planes-container hidden">
+            <h2>Nearby Aircraft (<span id="plane-count">0</span>)</h2>
+            <div id="planes-list" class="planes-list">
+                <!-- Planes will be dynamically added here -->
+            </div>
+        </div>
+
+        <div id="error" class="error hidden">
+            <p>⚠️ <span id="error-message"></span></p>
+            <button onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Data provided by <a href="https://opensky-network.org/" target="_blank">OpenSky Network</a></p>
+        <p>Showing aircraft within 50km radius</p>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
