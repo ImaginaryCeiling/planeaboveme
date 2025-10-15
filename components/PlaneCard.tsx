@@ -56,7 +56,8 @@ export default function PlaneCard({ plane }: PlaneCardProps) {
             </div>
           )}
 
-          {plane.routeInfo &&
+          {/* Route display disabled - uncomment when you have route data available */}
+          {/* {plane.routeInfo &&
             (plane.routeInfo.origin || plane.routeInfo.destination) && (
               <div className="route-info">
                 <span className="route-label">Route:</span>
@@ -65,7 +66,7 @@ export default function PlaneCard({ plane }: PlaneCardProps) {
                   {plane.routeInfo.destination || '?'}
                 </span>
               </div>
-            )}
+            )} */}
         </div>
 
         <div className="plane-distance">

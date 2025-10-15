@@ -68,25 +68,28 @@ export default function PlaneTracker() {
         .filter((plane: AircraftState) => plane.distance! <= RADIUS_KM)
         .sort((a: AircraftState, b: AircraftState) => a.distance! - b.distance!);
 
-      // Fetch route info for all planes
-      const planesWithRoutes = await Promise.all(
-        processedPlanes.map(async (plane: AircraftState) => {
-          try {
-            const routeResponse = await fetch(
-              `/api/routes/${encodeURIComponent(plane.callsign)}`
-            );
-            if (routeResponse.ok) {
-              const routeData = await routeResponse.json();
-              plane.routeInfo = routeData;
-            }
-          } catch (err) {
-            console.log(`Could not fetch route for ${plane.callsign}`);
-          }
-          return plane;
-        })
-      );
+      // Route fetching disabled - free APIs don't have reliable route data
+      // Keeping this code commented for reference if you get a paid API key later
 
-      setPlanes(planesWithRoutes);
+      // const planesWithRoutes = await Promise.all(
+      //   processedPlanes.map(async (plane: AircraftState) => {
+      //     try {
+      //       const routeResponse = await fetch(
+      //         `/api/routes/${encodeURIComponent(plane.callsign)}`
+      //       );
+      //       if (routeResponse.ok) {
+      //         const routeData = await routeResponse.json();
+      //         plane.routeInfo = routeData;
+      //       }
+      //     } catch (err) {
+      //       console.log(`Could not fetch route for ${plane.callsign}`);
+      //     }
+      //     return plane;
+      //   })
+      // );
+      // setPlanes(planesWithRoutes);
+
+      setPlanes(processedPlanes);
       setLastUpdate(new Date());
     } catch (err) {
       console.error('Error fetching flight data:', err);
